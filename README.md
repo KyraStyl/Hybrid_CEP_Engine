@@ -4,7 +4,7 @@
 
 ### Compilation
 Run ```mvn package``` under ```/implementation``` folder.
-Then, a ```jar``` named <b>hybridEngineCEP-v01.jar</b> is created under ```/target``` folder
+Then, a JAR named ```hybridEngineCEP-v01.jar``` is created under ```/target``` folder
 
 ### Input Parameters
 1. query file*
