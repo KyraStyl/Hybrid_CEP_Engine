@@ -25,5 +25,3 @@ java -jar target/hybridEngineCEP-v01.jar qFile confFile sFile engine (outFlag) (
 #### 1 Circular Kiting Fraud Detection
 
 ### Experiments
-
-### PUBLICATION
