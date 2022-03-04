@@ -71,7 +71,7 @@ public class CommandLineUI {
 			InputParamParser.validateParams(args);
 			InputParamParser.readParams(args);
 		}catch (Exception e){
-			System.out.println(e);
+			System.out.println("T"+e.toString().split(" T")[1]);
 			System.exit(100);
 		}
 
