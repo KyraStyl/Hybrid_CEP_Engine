@@ -24,6 +24,7 @@ public class CetManager {
     public static HashSet<EventTrend> cets = new HashSet<>();
     public static HashSet<EventTrend> rawcets = new HashSet<>();
     public static HashSet<EventTrend> distinct_cets = new HashSet<>();
+    public static int cetsdetectedtotal = 0;
 
     public static void writeToFile(boolean raw) throws IOException {
         HashSet<EventTrend> towrite = distinct_cets;

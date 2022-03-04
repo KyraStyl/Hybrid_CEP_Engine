@@ -138,11 +138,11 @@ public class CheckEvent implements Event{
     public int getAttributeByName(String attributeName) {
 
         if(attributeName.equalsIgnoreCase("src"))
-        //return Integer.parseInt(src.replaceAll("[^0-9]", ""));
-            return 'A'-src.charAt(0);
+            return Integer.parseInt(src.replaceAll("[^0-9]", ""));
+            //return 'A'-src.charAt(0);
         if(attributeName.equalsIgnoreCase("dst"))
-            //return Integer.parseInt(dst.replaceAll("[^0-9]", ""));
-            return 'A'-dst.charAt(0);
+            return Integer.parseInt(dst.replaceAll("[^0-9]", ""));
+            //return 'A'-dst.charAt(0);
         if(attributeName.equalsIgnoreCase("id"))
             return this.id;
         if(attributeName.equalsIgnoreCase("timestamp"))

@@ -26,7 +26,7 @@ public class Stock extends Example {
   private final Predicate idPredicate;
   private final Predicate pricePredicate;
   private final Predicate symbolPredicate;
-  private final Predicate symbolprd1;
+  private final Predicate priceprd1;
   private final boolean isSimple;
   private final NumericValue start;
   private final NumericValue end;
@@ -44,19 +44,22 @@ public class Stock extends Example {
         .build();
 
     this.predslist = predslist;
-   // this.predicates = createPredicates();
 
     idPredicate = new Predicate(Operator.eq, template.indexOf("id"), template.indexOf("id"));
     symbolPredicate = new Predicate(Operator.eq, template.indexOf("symbol"), template.indexOf("symbol"));
     pricePredicate = new Predicate(Operator.gt, template.indexOf("price"),
         template.indexOf("price"),v->Value.numeric(v.numericVal()));
     isSimple = args.isSimple;
-    symbolprd1 = new Predicate(Operator.eq, template.indexOf("symbol"), 1);
+    priceprd1 = new Predicate(Operator.eq, template.indexOf("price"), template.indexOf("price"), v -> Value.numeric(v.numericVal()));
+    Predicate volumePred = new Predicate(Operator.eq, template.indexOf("volume"), template.indexOf("volume"), v -> Value.numeric(2 * v.numericVal()));
 
 
     //this.predicates.add(pricePredicate);
 
-    this.predicates.add(symbolPredicate);
+    //this.predicates.add(symbolPredicate);
+
+    this.predicates.add(priceprd1);
+    //this.predicates.add(volumePred);
 
     String range = args.range.trim();
     range = range.substring(1, range.length() - 1).trim();
