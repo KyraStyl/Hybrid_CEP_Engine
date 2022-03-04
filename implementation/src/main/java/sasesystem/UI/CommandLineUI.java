@@ -91,7 +91,7 @@ public class CommandLineUI {
 		myStreamController = new StreamController(StockStreamConfig.streamSize, eventtype+"Event");
 		myStreamController.readStream(inputFile,eventtype);
 		myEngineController.setInput(myStreamController.getMyStream());
-		myStreamController.printStream();
+		//myStreamController.printStream();
 		myEngineController.runEngine();
 		Profiling.memoryUsed = runtime.totalMemory() - runtime.freeMemory();
 		Profiling.printProfiling();
