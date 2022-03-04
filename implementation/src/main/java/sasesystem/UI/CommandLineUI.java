@@ -79,10 +79,8 @@ public class CommandLineUI {
 		if(streamConfigFile!="test.stream")
 			ParseStockStreamConfig.parseStockEventConfig(streamConfigFile);
 				
-		StreamController myStreamController = null; 
-		
+		StreamController myStreamController;
 		EngineController myEngineController = new EngineController();
-
 		myEngineController.setNfa(nfaFileLocation);
 
 
@@ -99,6 +97,6 @@ public class CommandLineUI {
 		Profiling.printProfiling();
 			
 			
-		}
+	}
 }
 

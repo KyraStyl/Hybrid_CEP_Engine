@@ -44,6 +44,8 @@ public class ConfigFlags {
 
 	public static String inputFile = "";
 
+	public static String queryFile = "";
+
 	public static String eventtype = "";
 
 	public static int parallelism = -1;

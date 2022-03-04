@@ -20,6 +20,7 @@ public final class InputParamParser {
         String parrent_dir = Paths.get(System.getProperty("user.dir")).getParent()+"/";
 
         CommandLineUI.nfaFileLocation = parrent_dir+params.query;
+        ConfigFlags.queryFile = CommandLineUI.nfaFileLocation;
         CommandLineUI.inputFile = parrent_dir+params.input;
         ConfigFlags.inputFile = CommandLineUI.inputFile;
         ConfigFlags.engine = params.engine;

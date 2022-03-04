@@ -15,6 +15,7 @@ import cetsmanager.graph.construct.dynamic.parallel.ParallelStaticDynamicEqConst
 import cetsmanager.graph.construct.dynamic.sequential.SeqDynamicConstructor;
 import cetsmanager.graph.construct.dynamic.sequential.SeqStaticDynamicConstructor;
 import com.beust.jcommander.Parameter;
+import sasesystem.engine.ConfigFlags;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -53,7 +54,9 @@ public class Stock extends Example {
     priceprd1 = new Predicate(Operator.eq, template.indexOf("price"), template.indexOf("price"), v -> Value.numeric(v.numericVal()));
     Predicate volumePred = new Predicate(Operator.eq, template.indexOf("volume"), template.indexOf("volume"), v -> Value.numeric(2 * v.numericVal()));
 
+    this.predicates = createPredicates();
 
+    //System.exit(201);
     //this.predicates.add(pricePredicate);
 
     //this.predicates.add(symbolPredicate);
@@ -76,11 +79,15 @@ public class Stock extends Example {
       String tokens[] = s.split(" ");
       String lop = tokens[0].split("\\.")[0].split("\\[")[0];
       System.out.println(" lop === "+lop);
-      int attr = template.indexOf(tokens[0].split("\\.")[1]);
+      int attr1 = template.indexOf(tokens[0].split("\\.")[1]);
+      System.out.println("attr1 === "+attr1);
       Operator op = tokens[1].equalsIgnoreCase("=")?Operator.eq:tokens[1].equalsIgnoreCase(">")?Operator.gt:Operator.lt;
-      //int rop = Integer.parseInt(tokens[2]); 
-      // FIXME: 20/1/22 rop is now a STR not int
-      p.add(new Predicate(op,attr,attr));
+      String rop = tokens[2].split("\\.")[0].split("\\[")[0];
+      int attr2 = template.indexOf(tokens[2].split("\\.")[1]);
+      System.out.println(" rop === "+rop);
+      System.out.println("attr2 === "+attr2);
+
+      p.add(new Predicate(op,attr1,attr2));
     }
     return p;
   }
@@ -180,9 +187,6 @@ public class Stock extends Example {
     @Parameter(names = {"-r",
         "--range"}, description = "range for numeric, in the form of [start,end,step)")
     String range = "[0,1000,1)";
-
-    @Parameter(names = {"-pr", "--preds"}, description = "predicates")
-    String[] preds = new String[]{"Hello"};
 
   }
 }

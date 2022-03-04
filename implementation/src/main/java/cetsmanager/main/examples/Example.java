@@ -57,31 +57,30 @@ public abstract class Example {
     Config config;
     String[] nargs = Arrays.copyOfRange(args, 1, args.length);
 
-    if (args[0].startsWith("stock")) {
+    for(idx=0;idx<args.length && args[idx]!="-prednum";idx++);
+    //System.out.println("idx = = "+idx); //just for debug
 
-      for(idx=0;idx<args.length && args[idx]!="-prednum";idx++);
-      //System.out.println("idx = = "+idx); //just for debug
-
-      ArrayList<String> extracted = new ArrayList<>();
-      ArrayList<String> preds = new ArrayList<>();
-      String[] predlist = null;
-      if(idx!=0 && idx<args.length){
-        num = Integer.parseInt(args[idx+1]);
-        for(int i=1;i<args.length;i++){
-            if(i<idx || i>idx+num+2){
-              extracted.add(args[i]);
-            }else if(i>=idx+2){
-              preds.add(args[i]);
-            }
+    ArrayList<String> extracted = new ArrayList<>();
+    ArrayList<String> preds = new ArrayList<>();
+    String[] predlist = null;
+    if(idx!=0 && idx<args.length){
+      num = Integer.parseInt(args[idx+1]);
+      for(int i=1;i<args.length;i++){
+        if(i<idx || i>idx+num+2){
+          extracted.add(args[i]);
+        }else if(i>=idx+2){
+          preds.add(args[i]);
         }
-        nargs = new String[extracted.size()];
-        for(int i=0;i<extracted.size();i++)
-            nargs[i] = extracted.get(i);
-        predlist = new String[preds.size()];
-        for(int i=0;i<preds.size();i++)
-            predlist[i] = preds.get(i);
       }
+      nargs = new String[extracted.size()];
+      for(int i=0;i<extracted.size();i++)
+        nargs[i] = extracted.get(i);
+      predlist = new String[preds.size()];
+      for(int i=0;i<preds.size();i++)
+        predlist[i] = preds.get(i);
+    }
 
+    if (args[0].startsWith("stock")) {
       String ratios = args[0].substring(5);
       double ratio = 1;
       if(ratios.length() > 0) ratio = Double.parseDouble(ratios);
@@ -97,7 +96,7 @@ public abstract class Example {
           .addObject(config)
           .build()
           .parse(nargs);
-      return new Kite(config);
+      return new Kite(config, predlist);
     }
     else {
       config = new Config();

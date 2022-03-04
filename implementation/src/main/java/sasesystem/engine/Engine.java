@@ -170,12 +170,12 @@ public class Engine {
 		}
 		int window = this.nfa.getTimeWindow();
 
-		//String[] preds = new String[1];
-		//preds[0] = "b[i].price > b[i-1].price";
-		//preds[0] = "b[i].symbol > b[i-1].symbol";
+
+		String[] preds = new String[1];
+		preds[0] = getPred();
 
 		CetConfig conf = new CetConfig.Builder().type(ConfigFlags.eventtype).isSimple(true).parallelism(ConfigFlags.parallelism).inputFile(ConfigFlags.inputFile)
-				.pdfs(false).windowLength(window).build();//.preds(preds).build();
+				.pdfs(false).windowLength(window).preds(preds).build();
 
 		Example example = Example.getExample(conf.getConfig());
 		example.start(eventsStr);
@@ -198,6 +198,24 @@ public class Engine {
 		}
 
 		Profiling.memoryUsed = runtime.totalMemory() - runtime.freeMemory();
+	}
+
+	private String getPred() {
+		String line = "";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(ConfigFlags.queryFile));
+			while((line = br.readLine())!=null){
+				if(line.startsWith("AND"))
+					break;
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return line.split("AND ")[1];
 	}
 
 

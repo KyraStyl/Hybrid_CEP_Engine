@@ -38,6 +38,9 @@ public class Config {
       + "which means do not further iterate")
   int numInteration = 1;
 
+  @Parameter(names = {"-pr", "--preds"}, description = "predicates")
+  String[] preds = new String[]{"Hello"};
+
   @Parameter(names = "--help", help = true)
   private boolean help;
 }

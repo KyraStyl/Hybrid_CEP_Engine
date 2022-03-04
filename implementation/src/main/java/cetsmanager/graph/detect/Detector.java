@@ -137,7 +137,6 @@ public abstract class Detector {
 //            e.printStackTrace();
 //          }
           long latency = System.nanoTime() - cet.getBeginTime();
-          System.out.println("lat = "+latency);
           Profiling.updateLatency(latency);
           Profiling.addCetNum();
           CetManager.cets.add(cet);
