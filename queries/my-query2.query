@@ -1,5 +1,0 @@
-PATTERN SEQ(Stock+ a[], Stock b)
-WHERE skip-till-any-match
-AND a[i].price = a[i-1].price
-AND b.price = a[i].price
-WITHIN 20
