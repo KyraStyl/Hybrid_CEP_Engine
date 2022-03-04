@@ -7,6 +7,7 @@ import cetsmanager.graph.AttributeVertex;
 import cetsmanager.graph.EventVertex;
 import cetsmanager.graph.construct.Constructor;
 import hybridutils.CetManager;
+import sasesystem.engine.Profiling;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -114,7 +115,7 @@ public abstract class Detector {
     ends = DetectUtil.syncByQuery(p2ends, query);
   }
 
-  protected void writeTrends(Iterator<EventTrend> trends, boolean inShort) {
+  protected void writeTrends(Iterator<EventTrend> trends, boolean inShort, long numCets) {
     //try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(writePath,"cets")))) {
 
 //    File file = null;
@@ -125,6 +126,8 @@ public abstract class Detector {
 //      }
 //      Writer output ;
 //      output = new BufferedWriter(new FileWriter(file, true));
+      long endW = System.nanoTime();
+      Profiling.tempEnd = endW;
       while (trends.hasNext()) {
         EventTrend cet = trends.next();
         if(cet.events().size()>1){
@@ -133,9 +136,13 @@ public abstract class Detector {
 //          } catch (Exception e) {
 //            e.printStackTrace();
 //          }
-
+          long latency = System.nanoTime() - cet.getBeginTime();
+          System.out.println("lat = "+latency);
+          Profiling.updateLatency(latency);
+          Profiling.addCetNum();
           CetManager.cets.add(cet);
           CetManager.rawcets.add(cet);
+          CetManager.cetsdetectedtotal +=1;
         }
         //bw.write(cet.shortString() + "\n");
       }

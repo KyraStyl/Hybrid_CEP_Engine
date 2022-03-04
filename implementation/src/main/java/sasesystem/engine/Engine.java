@@ -174,12 +174,13 @@ public class Engine {
 		//preds[0] = "b[i].price > b[i-1].price";
 		//preds[0] = "b[i].symbol > b[i-1].symbol";
 
-		CetConfig conf = new CetConfig.Builder().type(ConfigFlags.eventtype).isSimple(true).inputFile(ConfigFlags.inputFile)
+		CetConfig conf = new CetConfig.Builder().type(ConfigFlags.eventtype).isSimple(true).parallelism(ConfigFlags.parallelism).inputFile(ConfigFlags.inputFile)
 				.pdfs(false).windowLength(window).build();//.preds(preds).build();
+
 		Example example = Example.getExample(conf.getConfig());
 		example.start(eventsStr);
 		Long endTime = System.nanoTime();
-		Profiling.totalRunTime =  (endTime-startTime) / 1_000_000_000;
+		Profiling.totalRunTime =  endTime-startTime;
 		Profiling.numberOfEvents = eventsStr.size();
 		Profiling.numberOfMatches = CetManager.cets.size();
 
@@ -641,8 +642,9 @@ public class Engine {
 								//check match and output match
 								if(newRun.checkMatch()){
 									this.outputMatch(new Match(newRun, this.nfa, this.buffer));
-									Profiling.totalRunLifeTime += (System.nanoTime() - r.getLifeTimeBegin());
-															
+									long latency = System.nanoTime() - r.getLifeTimeBegin();
+									Profiling.updateLatency(latency);
+									Profiling.totalRunLifeTime += latency;
 								}
 							}else{
 								//check proceed
@@ -652,8 +654,9 @@ public class Engine {
 									newerRun.proceed();
 									if(newerRun.isComplete()){
 										this.outputMatch(new Match(r, this.nfa, this.buffer));
-										Profiling.totalRunLifeTime += (System.nanoTime() - r.getLifeTimeBegin());
-										
+										long latency = System.nanoTime() - r.getLifeTimeBegin();
+										Profiling.updateLatency(latency);
+										Profiling.totalRunLifeTime += latency;
 									}else {
 										this.activeRuns.add(newerRun);
 									}

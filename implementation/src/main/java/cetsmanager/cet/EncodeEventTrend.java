@@ -10,6 +10,7 @@ public class EncodeEventTrend extends EventTrend{
   private List<Event> events;
   private int size;
   private EncodeEventTrend head;
+  private long lifeTimeBegin;
 
   public EncodeEventTrend() {
     this(null);
@@ -18,6 +19,7 @@ public class EncodeEventTrend extends EventTrend{
 
   public EncodeEventTrend(EncodeEventTrend previous) {
     this.previous = previous;
+    lifeTimeBegin = System.nanoTime();
   }
 
   @Override
@@ -74,6 +76,11 @@ public class EncodeEventTrend extends EventTrend{
   @Override
   public Event tail() {
     return events.get(events.size()-1);
+  }
+
+  @Override
+  public long getBeginTime() {
+    return lifeTimeBegin;
   }
 
   @Override

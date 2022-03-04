@@ -9,10 +9,12 @@ import java.util.Objects;
 public class Event implements Serializable {
   public final long timestamp;
   protected Value[] values;
+  public final long lifeBegin;
 
-  public Event(long timestamp, Value[] values) {
+  public Event(long timestamp, Value[] values, long lifeBegin) {
     this.timestamp = timestamp;
     this.values = values;
+    this.lifeBegin = lifeBegin;
   }
 
   public Value get(int i) {

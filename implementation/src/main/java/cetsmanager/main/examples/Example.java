@@ -11,6 +11,7 @@ import cetsmanager.util.Global;
 import com.beust.jcommander.JCommander;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterators;
+import sasesystem.engine.Profiling;
 
 import javax.annotation.Nonnull;
 import java.io.*;
@@ -128,14 +129,14 @@ public abstract class Example {
 //      e.printStackTrace();
 //    }
 
-
     ArrayList<Window> windowedEvents = windowEvents(eventsStr);
-
     Graph graph = new Graph(windowedEvents.get(0).events, getTemplate(),
             getQuery(), getConstructors());
     graph.construct();
 
     wait(1);
+    Profiling.tempStart = System.nanoTime();
+    Profiling.initSlide();
 
     processGraph(graph,0);
 
@@ -150,8 +151,11 @@ public abstract class Example {
 //      } catch (Exception e) {
 //        e.printStackTrace();
 //      }
+      Profiling.curWin+=1;
+      Profiling.initSlide();
       int lastidx = windowedEvents.get(i).events.size()-1;
       System.gc();
+      Profiling.tempStart = System.nanoTime();
       graph.incrementalChange(windowedEvents.get(i-1).events.get(0), windowedEvents.get(i).events.get(lastidx));
       processGraph(graph,i);
     }
@@ -183,11 +187,8 @@ public abstract class Example {
   private ArrayList<Window> windowEvents(ArrayList<String> eventsStr) {
     ArrayList<Window> windowedEvents = new ArrayList<>();
     Iterator<Event> it = readInput(eventsStr);
-    System.out.println("num of events: "+eventsStr.size());
-    System.out.println("window length: "+wl);
     this.numWindow = eventsStr.size()- (int)wl/(int)sl +1;
     this.numWindow = this.numWindow <= 0 ? 1: this.numWindow;
-    System.out.println("num of windows: "+numWindow);
     Query query = getQuery();
     long nextW = 0;
 

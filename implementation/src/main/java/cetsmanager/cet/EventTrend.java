@@ -23,6 +23,8 @@ public abstract class EventTrend {
     return get(size()-1);
   }
 
+  public abstract long getBeginTime();
+
   public abstract int size();
 
   public abstract EventTrend copy();

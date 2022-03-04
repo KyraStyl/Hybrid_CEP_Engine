@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class SimpleEventTrend extends EventTrend{
   private ArrayList<Event> events;
+  private static long lifeTimeBegin;
 
   public SimpleEventTrend() {
     this(new ArrayList<>());
@@ -17,10 +18,13 @@ public class SimpleEventTrend extends EventTrend{
   public SimpleEventTrend(Event event) {
     this();
     events.add(event);
+    lifeTimeBegin = event.lifeBegin;
   }
 
   private SimpleEventTrend(ArrayList<Event> events) {
     this.events = events;
+    if(events.size()>0)
+      lifeTimeBegin = events.get(0).lifeBegin;
   }
 
   @Override
@@ -30,6 +34,8 @@ public class SimpleEventTrend extends EventTrend{
 
   public void append(Event event) {
     events.add(event);
+    if(events.size() == 1)
+      lifeTimeBegin = event.lifeBegin;
   }
 
   public void append(EventTrend trend) {
@@ -39,6 +45,11 @@ public class SimpleEventTrend extends EventTrend{
   @Override
   public Event get(int index) {
     return events.get(index);
+  }
+
+  @Override
+  public long getBeginTime() {
+    return lifeTimeBegin;
   }
 
   @Override

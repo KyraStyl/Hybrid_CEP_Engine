@@ -46,7 +46,7 @@ public class EventTemplate implements Serializable {
         values[i] = Value.numeric(Double.parseDouble(sps[i + 1]));
       }
     }
-    return new Event(timestamp, values);
+    return new Event(timestamp, values, System.nanoTime());
   }
 
   public Event str2eventstock(String line){
@@ -58,7 +58,7 @@ public class EventTemplate implements Serializable {
     values[2] = Value.numeric(Integer.parseInt(tokens[2]));
     values[3] = Value.numeric(Integer.parseInt(tokens[3]));
     values[4] = Value.numeric(Integer.parseInt(tokens[4]));
-    return new Event(timestamp,values);
+    return new Event(timestamp,values, System.nanoTime());
   }
 
   public static class Builder {
