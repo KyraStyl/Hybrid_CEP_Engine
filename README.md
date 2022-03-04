@@ -1,4 +1,4 @@
-# Hybrid CEP engine
+# Hybrid CEP Engine
 
 ### Description
 
