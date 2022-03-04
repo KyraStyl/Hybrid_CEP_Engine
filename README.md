@@ -14,7 +14,10 @@ The latter departs from the NFA rationale, and it is capable of trading latency 
 ![architecture image](https://github.com/KyraStyl/hybrid_cep_system/blob/master/arch-3.png)
 ***
 
-### Compilation
+### Compilation 
+
+For Linux users, first install maven, if necessary, by running ```sudo apt install maven```.
+
 Run ```mvn package``` under ```/implementation``` folder.
 Then, a JAR named ```hybridEngineCEP-v01.jar``` is created under ```/target``` folder
 
