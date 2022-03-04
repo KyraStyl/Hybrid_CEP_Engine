@@ -45,6 +45,8 @@ public class ConfigFlags {
 	public static String inputFile = "";
 
 	public static String eventtype = "";
+
+	public static int parallelism = -1;
 	/**
 	 * The engine will generate random values for stream if we set it as true.
 	 */

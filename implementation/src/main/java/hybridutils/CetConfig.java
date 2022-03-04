@@ -1,5 +1,6 @@
 package hybridutils;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class CetConfig {
@@ -47,7 +48,7 @@ public class CetConfig {
             arguments.add("-pdfs");
         if(write){
             arguments.add("-w");
-            arguments.add(System.getProperty("user.dir")+"/results-test");
+            arguments.add(Paths.get(System.getProperty("user.dir")).getParent()+"/results-test");
             arguments.add("-out");
         }
         if(prednum>0){

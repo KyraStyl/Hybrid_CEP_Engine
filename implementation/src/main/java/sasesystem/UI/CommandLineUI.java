@@ -24,6 +24,8 @@
 */
 package sasesystem.UI;
 
+import hybridutils.InputParamParser;
+import hybridutils.Params;
 import sasesystem.engine.ConfigFlags;
 import sasesystem.engine.EngineController;
 import sasesystem.engine.Profiling;
@@ -53,60 +55,34 @@ public class CommandLineUI {
 	 * 2: print the results or not (1 for print, 0 for not print)
 	 * 3: use sharing techniques or not, ("sharingengine" for use, nothing for not use)
 	 */
+	public static String nfaFileLocation;
+	public static String streamConfigFile;
+	public static String inputFile;
+	public static String eventtype;
+
 	public static void main(String args[]) throws CloneNotSupportedException, EvaluationException, IOException{
 
-		String parrent_dir = Paths.get(System.getProperty("user.dir")).getParent()+"/";
+		nfaFileLocation = "test.query";
+		streamConfigFile = "test.stream";
+		inputFile = "test.stream";
+		eventtype = "stock";
 
-		String nfaFileLocation = "test.query";
-		String streamConfigFile = "test.stream";
-		String inputFile = "test.stream";
-		String eventtype = "stock";
-
-		
-		String engineType = null;
-		if(args.length > 0){
-			nfaFileLocation = parrent_dir+args[0];
-		}
-		
-		if(args.length > 1){
-			streamConfigFile = parrent_dir+args[1];
+		try {
+			InputParamParser.validateParams(args);
+			InputParamParser.readParams(args);
+		}catch (Exception e){
+			System.out.println(e);
+			System.exit(100);
 		}
 
-		if(args.length > 2){
-			inputFile = parrent_dir+args[2];
-			ConfigFlags.inputFile = inputFile;
-		}
 
-		if(args.length > 3){
-			ConfigFlags.engine = args[3];
-		}
-
-		if(args.length > 4){
-			if(Integer.parseInt(args[4])== 1){
-				ConfigFlags.printResults = true;
-			}else{
-				ConfigFlags.printResults = false;
-			}
-		}
-
-		if(args.length > 5){
-			ConfigFlags.outFile = parrent_dir+args[5];
-		}
-
-		if(args.length > 6){
-			eventtype = args[6].equalsIgnoreCase("kite")?"check":args[6];
-			ConfigFlags.eventtype = eventtype.toLowerCase(Locale.ROOT);
-		}
-
-		ParseStockStreamConfig.parseStockEventConfig(streamConfigFile);
+		if(streamConfigFile!="test.stream")
+			ParseStockStreamConfig.parseStockEventConfig(streamConfigFile);
 				
 		StreamController myStreamController = null; 
 		
 		EngineController myEngineController = new EngineController();
-		
-		if(engineType != null){
-			myEngineController = new EngineController(engineType);
-		}
+
 		myEngineController.setNfa(nfaFileLocation);
 
 
