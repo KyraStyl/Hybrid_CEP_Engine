@@ -42,6 +42,9 @@ Then, a JAR named ```hybridEngineCEP-v01.jar``` is created under ```/target``` f
 
     -c, --conf           The stream configuration file
 
+#### 3. Guide:
+    -h, --help           Prints the helper, with required and optional parameters
+
 ***
 
 ### Run
