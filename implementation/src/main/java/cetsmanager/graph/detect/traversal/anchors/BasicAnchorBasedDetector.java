@@ -163,7 +163,7 @@ public class BasicAnchorBasedDetector extends AnchorBasedDetector {
     long size;
     if (writePath != null) {
       size = simpleEventTrends.size();
-      writeTrends(simpleEventTrends.iterator(), true);
+      writeTrends(simpleEventTrends.iterator(), true, size);
     } else {
       size = counter.get();
     }
