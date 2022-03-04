@@ -23,7 +23,7 @@ public class Params {
     int p = 4;
 
     @Parameter(names = {"-w", "-write"}, description = "write graph to directory")
-    boolean isWrite = true;
+    boolean isWrite = false;
 
     @Parameter(names = {"-o","--out"}, description = "output file for results")
     String outFile = "output-results";

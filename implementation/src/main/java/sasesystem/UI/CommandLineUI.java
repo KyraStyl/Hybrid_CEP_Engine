@@ -79,12 +79,9 @@ public class CommandLineUI {
 
 		if(streamConfigFile!="test.stream")
 			ParseStockStreamConfig.parseStockEventConfig(streamConfigFile);
-				
 		StreamController myStreamController;
 		EngineController myEngineController = new EngineController();
 		myEngineController.setNfa(nfaFileLocation);
-
-
 		Runtime runtime = Runtime.getRuntime();
 		runtime.gc();
 		myEngineController.initializeEngine();
