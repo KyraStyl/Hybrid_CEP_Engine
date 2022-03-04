@@ -9,6 +9,10 @@ and a [CET](https://dl.acm.org/doi/10.1145/3472456.3472526) (Complete Event Tren
 The latter departs from the NFA rationale, and it is capable of trading latency for significantly lower resource usage in such a beneficial manner that, in practice, it can run much more queries than previously.
 
 ***
+### Architecture
+
+![architecture image](https://github.com/KyraStyl/hybrid_cep_system/blob/master/arch-3.png)
+***
 
 ### Compilation
 Run ```mvn package``` under ```/implementation``` folder.
