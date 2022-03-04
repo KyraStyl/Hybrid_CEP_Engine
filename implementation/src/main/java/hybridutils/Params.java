@@ -29,5 +29,5 @@ public class Params {
     String outFile = "output-results";
 
     @Parameter(names = {"-h","--help"}, help = true)
-    private boolean help;
+    public boolean help;
 }
