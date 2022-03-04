@@ -20,7 +20,7 @@ public class Params {
     String engine = "sase";
 
     @Parameter(names = {"-p","--parallelism"}, description = "parallelism for cet")
-    int p = -1;
+    int p = 4;
 
     @Parameter(names = {"-w", "-write"}, description = "write graph to directory")
     boolean isWrite = true;

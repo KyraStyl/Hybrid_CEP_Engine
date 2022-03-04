@@ -30,6 +30,7 @@ public final class InputParamParser {
 
         ConfigFlags.printResults = params.isWrite;
         ConfigFlags.outFile = parrent_dir+params.outFile;
+        ConfigFlags.parallelism = params.p;
 
         CommandLineUI.eventtype = params.eventtype.equalsIgnoreCase("kite")?"check":params.eventtype;
         ConfigFlags.eventtype = CommandLineUI.eventtype.toLowerCase(Locale.ROOT);
