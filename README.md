@@ -52,21 +52,21 @@ java -jar target/hybridEngineCEP-v01.jar [options]
 
 ### Output
 ****Profiling Numbers****
-* **Engine used**: SASE OR CET
-* **Total Running Time**: SECONDS seconds
-* **Number Of Events Processed**: EVENTS
-* **Number Of Runs Created**: RUNS
-* **Number Of Matches Found**: MATCHES
-* **Used memory is bytes**: BYTES
-* **Used memory is megabytes**: MB
-* **Number of cets per slide**: (only for CET engine)
-* **Maximum Latency per slide in nano**: (only for CET engine)
-* **Minimum Latency per slide in nano**: (only for CET engine)
-* **Average Latency per slide in nano**: (only for CET engine)
-* **Maximum Latency in nano**: 
-* **Minimum Latency in nano**: 
-* **Average Latency in nano**: 
-* **Throughput**: X events/second
+* **Engine used**: *SASE OR CET*
+* **Total Running Time**: *SECONDS* seconds
+* **Number Of Events Processed**: *EVENTS*
+* **Number Of Runs Created**: *RUNS*
+* **Number Of Matches Found**: *MATCHES*
+* **Used memory is bytes**: *BYTES*
+* **Used memory is megabytes**: *MB*
+* **Number of cets per slide**: *(only for CET engine)*
+* **Maximum Latency per slide in nano**: *(only for CET engine)*
+* **Minimum Latency per slide in nano**: *(only for CET engine)*
+* **Average Latency per slide in nano**: *(only for CET engine)*
+* **Maximum Latency in nano**: *MAX_L*
+* **Minimum Latency in nano**: *MIN_L*
+* **Average Latency in nano**: *AVG_L*
+* **Throughput**: *X* events/second
 
 ### Examples
 #### 1. Circular Kiting Fraud Detection (using CET engine)
@@ -84,3 +84,10 @@ java -jar target/hybridEngineCEP-v01.jar -q queries/qstock1.query -i datasets/st
 ```
 java -jar target/hybridEngineCEP-v01.jar -q queries/qstock2.query -i datasets/dataset-test.stream -t stock -e sase -w -o output/results-price.res 
 ```
+
+### Stream Generators
+
+There are two stream generators under the folder ```datasets/generators/```.
+
+Run ```python checkGen.py -h``` or ```python stockGen.py -h``` to find out the required and optional
+parameters for each generator.
