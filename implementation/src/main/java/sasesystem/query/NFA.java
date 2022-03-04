@@ -216,7 +216,6 @@ public class NFA {
 		String seq = line.substring(line.indexOf('(') + 1, line.indexOf(')'));
 		StringTokenizer st = new StringTokenizer(seq, ",");
 		this.size = st.countTokens();
-		//System.out.println(size);
 		this.states = new State[size];
 		String state;
 		for(int i = 0; i < size; i ++){
@@ -236,10 +235,8 @@ public class NFA {
 				eventType = eventType.substring(1, eventType.length());
 				
 			}
-			
 			//System.out.println("The tag for state " + i + " is " + stateTag);
 			if(isKleeneClosure){
-				
 				this.states[i] = new State(i + 1, stateTag, eventType, "kleeneClosure");
 			}else if(isNegation){
 				this.states[i] = new State(i + 1, stateTag, eventType, "negation");
@@ -256,7 +253,6 @@ public class NFA {
 		StringTokenizer st = new StringTokenizer(line);
 		st.nextToken();
 		String token = st.nextToken().trim();
-		System.out.println(token);
 		if(token.startsWith("[")){
 			//the partition attribute
 			if(!this.hasPartitionAttribute){

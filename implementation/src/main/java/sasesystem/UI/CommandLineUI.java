@@ -75,6 +75,7 @@ public class CommandLineUI {
 			System.exit(100);
 		}
 
+		System.out.println(inputFile);
 
 		if(streamConfigFile!="test.stream")
 			ParseStockStreamConfig.parseStockEventConfig(streamConfigFile);
