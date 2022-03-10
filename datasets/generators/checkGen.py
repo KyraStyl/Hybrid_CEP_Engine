@@ -132,5 +132,5 @@ if __name__ == "__main__":
         transform(filename)
         filename +="-transf"
     if extend:
-        produce(filename, prob, 1000)
+        produce(filename, prob, options["events"])
         
