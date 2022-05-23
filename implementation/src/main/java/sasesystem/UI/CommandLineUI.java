@@ -75,13 +75,13 @@ public class CommandLineUI {
 			System.exit(100);
 		}
 
-		System.out.println(inputFile);
-
 		if(streamConfigFile!="test.stream")
 			ParseStockStreamConfig.parseStockEventConfig(streamConfigFile);
 		StreamController myStreamController;
 		EngineController myEngineController = new EngineController();
 		myEngineController.setNfa(nfaFileLocation);
+		myEngineController.setEngine();
+
 		Runtime runtime = Runtime.getRuntime();
 		runtime.gc();
 		myEngineController.initializeEngine();

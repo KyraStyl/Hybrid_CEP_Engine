@@ -69,7 +69,7 @@ public class Engine {
 	/**
 	 * The runs which can be removed from the active runs.
 	 */
-	ArrayList<Run> toDeleteRuns;	
+	ArrayList<Run> toDeleteRuns;
 	/**
 	 * The matches
 	 */

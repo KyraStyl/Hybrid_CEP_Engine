@@ -93,6 +93,6 @@ public class ConfigFlags {
 	 */
 	public static boolean hasNegation = false;
 
-	public static String engine = "sase";
+	public static String engine = "null";
 	
 }

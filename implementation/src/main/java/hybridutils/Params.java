@@ -17,7 +17,7 @@ public class Params {
     String eventtype = "stock";
 
     @Parameter(names = {"-e", "--engine"}, description = "engine type: sase or cet")
-    String engine = "sase";
+    String engine = "null";
 
     @Parameter(names = {"-p","--parallelism"}, description = "parallelism for cet")
     int p = 4;

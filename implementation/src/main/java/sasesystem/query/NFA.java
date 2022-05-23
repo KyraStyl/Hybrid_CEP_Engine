@@ -100,6 +100,8 @@ public class NFA {
 	 * The negation state
 	 */
 	State negationState;
+
+	public boolean containsKleene = false;
 	
 	/**
 	 * Constructs an NFA from a file
@@ -238,6 +240,7 @@ public class NFA {
 			//System.out.println("The tag for state " + i + " is " + stateTag);
 			if(isKleeneClosure){
 				this.states[i] = new State(i + 1, stateTag, eventType, "kleeneClosure");
+				containsKleene = true;
 			}else if(isNegation){
 				this.states[i] = new State(i + 1, stateTag, eventType, "negation");
 			}else{

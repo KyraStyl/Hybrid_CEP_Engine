@@ -78,6 +78,18 @@ public class EngineController {
 		NFA nfa = new NFA(nfaLocation);
 		myEngine.setNfa(nfa);
 	}
+
+	public void setEngine(){
+		NFA nfa = myEngine.getNfa();
+		String engine = "sase";
+		if(nfa.containsKleene)
+			if(nfa.getSelectionStrategy().equalsIgnoreCase("skip-till-any-match"))
+				if(nfa.getTimeWindow() >= 100)
+					engine = "cet";
+
+		if(ConfigFlags.engine == "null")
+			ConfigFlags.engine = engine;
+	}
 /**
  * Sets the input stream for the engine
  * @param input the input stream
