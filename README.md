@@ -2,7 +2,7 @@
 
 ### Description
 
-A Hybrid Solution proposed for near-real-time Complex Event Processing in a resource-constraint environment. 
+A Hybrid Solution proposed for near-real-time Complex Event Processing in a resource-constrained environment. 
 This is achieved through the combination of two existing state-of-the-art engines, namely the SASE system, 
 which was originally introduced in [SASE](http://sase.cs.umass.edu/uploads/pubs/sase-sigmod2006.pdf), 
 and a [CET](https://dl.acm.org/doi/10.1145/3472456.3472526) (Complete Event Trend) detection solution, proposed  by Mei H. 
