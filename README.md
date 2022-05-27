@@ -18,9 +18,9 @@ The latter departs from the NFA rationale, and it is capable of trading latency 
 Decides the appropriate engine depending on the input query, based on predefined rules. These rules were generated using insights extracted from the experiments. 
 
 The criteria considered before deciding on the execution engine are: 
-    (a) the presence or absence of Kleene events in the sought pattern, 
-    (b) the strategy by which the relevant events will be selected from the incoming input stream,
-    (c) the size of the sliding window imposed by the user. 
+    * (a) the presence or absence of Kleene events in the sought pattern, 
+    * (b) the strategy by which the relevant events will be selected from the incoming input stream,
+    * (c) the size of the sliding window imposed by the user. 
 
 If the pattern contains **Kleene**, the selection strategy is **Skip-Till-Any-Match**, and the **window length >= 100** then CET engine is employed.
 Otherwise the selected engine is that of SASE.
